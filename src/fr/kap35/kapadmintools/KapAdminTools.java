@@ -14,6 +14,7 @@ public class KapAdminTools extends JavaPlugin {
 
     BaseItems items;
     GuiManager manager;
+    KapEasyMenu easyMenu;
 
     @Override
     public void onEnable() {
@@ -23,7 +24,13 @@ public class KapAdminTools extends JavaPlugin {
 
         getCommand("kapadmintools").setExecutor(new PanelAdminCommand(this));
         getServer().getPluginManager().registerEvents(new MenuListeners(this), this);
-        manager = ((KapEasyMenu)Bukkit.getServer().getPluginManager().getPlugin("KapEasyMenu")).getGuiManager();
+        easyMenu = (KapEasyMenu) Bukkit.getPluginManager().getPlugin("KapEasyMenu");
+        if (easyMenu == null) {
+            getLogger().severe("KapEasyMenu is not installed !");
+            Bukkit.getPluginManager().disablePlugin(this);
+            return;
+        }
+        manager = easyMenu.getGuiManager();
         manager.registerMenus(new PanelAdminGUI(this), "Panel Admin");
     }
 
@@ -39,5 +46,9 @@ public class KapAdminTools extends JavaPlugin {
 
     public GuiManager getGuiManager() {
         return manager;
+    }
+
+    public KapEasyMenu getEasyMenu() {
+        return easyMenu;
     }
 }
