@@ -1,0 +1,21 @@
+name: KapAdminTools
+author: kap35
+version: 1.0.0
+main: fr.kap35.kapadmintools.KapAdminTools
+
+depend:
+  - KapEasyMenu
+
+commands:
+  kapadmintools:
+    description: "KapAdminTools"
+    usage: "/kapadmintools"
+    aliases: [kat]
+    permission: kapadmintools.kapadmintools
+    permission-message: "&cYou don't have permission to use this command."
+  kban:
+    description: "Ban a player"
+    usage: "/kban <player> [reason]"
+    aliases: [kban]
+    permission: kapadmintools.kban
+    permission-message: "&cYou don't have permission to use this command."
