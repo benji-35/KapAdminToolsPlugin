@@ -10,6 +10,8 @@ import fr.kap35.kapeasymenu.Menu.GuiMenu;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.UUID;
+
 public class KapAdminTools extends JavaPlugin {
 
     BaseItems items;
@@ -19,25 +21,27 @@ public class KapAdminTools extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        getLogger().info("KapAdminTools is enabled !");
+        Bukkit.getConsoleSender().sendMessage("KapAdminTools is enabled !");
         items = new BaseItems();
 
         getCommand("kapadmintools").setExecutor(new PanelAdminCommand(this));
         getServer().getPluginManager().registerEvents(new MenuListeners(this), this);
         easyMenu = (KapEasyMenu) Bukkit.getPluginManager().getPlugin("KapEasyMenu");
         if (easyMenu == null) {
-            getLogger().severe("KapEasyMenu is not installed !");
+            Bukkit.getConsoleSender().sendMessage("KapEasyMenu is not installed ! Disabling KapAdminTools...");
             Bukkit.getPluginManager().disablePlugin(this);
             return;
         }
+        Bukkit.getConsoleSender().sendMessage("Using KapEasyMenu version " + easyMenu.getDescription().getVersion());
         manager = easyMenu.getGuiManager();
         manager.registerMenus(new PanelAdminGUI(this), "Panel Admin");
+        saveDefaultConfig();
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        getLogger().info("KapAdminTools is disabled !");
+        Bukkit.getConsoleSender().sendMessage("KapAdminTools is disabled !");
     }
 
     public BaseItems getItems() {
@@ -50,5 +54,13 @@ public class KapAdminTools extends JavaPlugin {
 
     public KapEasyMenu getEasyMenu() {
         return easyMenu;
+    }
+
+    public boolean isPlayerMuted(UUID uuid) {
+        return false;
+    }
+
+    public boolean isPlayerBanned(UUID uuid) {
+        return false;
     }
 }

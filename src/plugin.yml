@@ -19,3 +19,27 @@ commands:
     aliases: [kban]
     permission: kapadmintools.kban
     permission-message: "&cYou don't have permission to use this command."
+  kfreeze:
+    description: "Freeze a player"
+    usage: "/kfreeze <player> | /kfreeze <player> <time>"
+    aliases: [kfreeze, kfr, freeze]
+    permission: kapadmintools.kfreeze
+    permission-message: "&cYou don't have permission to use this command."
+  kkick:
+    description: "Kick a player"
+    usage: "/kkick <player> [reason]"
+    aliases: [kkick, kick]
+    permission: kapadmintools.kkick
+    permission-message: "&cYou don't have permission to use this command."
+  kmute:
+    description: "Mute a player"
+    usage: "/kmute <player> | /kmute <player> <time>"
+    aliases: [kmute, mute]
+    permission: kapadmintools.kmute
+    permission-message: "&cYou don't have permission to use this command."
+  ktempban:
+    description: "Tempban a player"
+    usage: "/ktempban <player> <time> [reason]"
+    aliases: [ktempban, tempban]
+    permission: kapadmintools.ktempban
+    permission-message: "&cYou don't have permission to use this command."
